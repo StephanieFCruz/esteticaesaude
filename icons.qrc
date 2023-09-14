@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>Icon-Menu.png</file>
+    <file>icons8-aroma-24.png</file>
+    <file>logo-lotus.jpg</file>
+    <file>icon-flor-de-lotus.png</file>
+  </qresource>
+</RCC>
