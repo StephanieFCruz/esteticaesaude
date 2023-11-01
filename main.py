@@ -15,12 +15,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super(MainWindow, self).__init__()
         self.setupUi(self)
         self.setWindowTitle("Estética & Saúde - SisCad")
-        appIcon = QIcon("icon-flor-de-lotus.png")
+        appIcon = QIcon("lotus_icon.png")
         self.setWindowIcon(appIcon)
 
         self.db = Data_base()
         self.busca_produto()
         self.busca_cliente()
+        self.busca_pedido()
 
         #############################################
         #BOTÃO MENU
@@ -35,24 +36,35 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_cad_cliente.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_cad_cliente))
         self.btn_cad_pedido.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_cad_pedido))
         self.btn_historico.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_consulta_historico))
-        ####################################################################################################
+        #####################################################################################################
 
-        #############################################
+        ######################################################
+        #PREENCHIMENTO AUTOMATICO DOS DADOS NO PEDIDO
+        self.txt_cpf_pedido.editingFinished.connect(self.busca_cpf)
+        self.txt_cod_pedido.editingFinished.connect(self.busca_codigo)
+        self.txt_qtde.editingFinished.connect(self.calcular_total)
+        ######################################################
+        
         #CADASTRAR PRODUTOS
         self.btn_cadastrar_produto.clicked.connect(self.cadastro_produto)
         #CADASTRAR CLIENTES
         self.btn_cadastrar_cliente.clicked.connect(self.cadastro_cliente)
+        #CADASTRAR PEDIDOS
+        self.btn_cadastrar_pedido.clicked.connect(self.cadastro_pedido)
 
         #ALTERAR PRODUTO
         self.btn_alterar_prod.clicked.connect(self.alterar_produto)
         #ALTERAR CLIENTE
         self.btn_alterar_cli.clicked.connect(self.alterar_cliente)
+        #ALTERAR PEDIDO
+        self.btn_alterar_pedido.clicked.connect(self.alterar_pedido)
 
         #EXCLUIR PRODUTO
         self.btn_excluir_prod.clicked.connect(self.excluir_produto)
         #EXCLUIR CLIENTE
         self.btn_excluir_cli.clicked.connect(self.excluir_cliente)
-        ##############################################
+        #EXCLUIR PEDIDO
+        self.btn_excluir_pedido.clicked.connect(self.excluir_pedido)
 
 
     def leftMenu(self):
@@ -77,7 +89,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.txt_valor.text(),
             
         )
-        
 
         if any(x.strip() == '' for x in fullDataSet):
           self.msg('erro', 'Preencha todos os campos')
@@ -106,19 +117,56 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.txt_email.text()
             
         )
-        
 
-#        if any(x.strip() == '' for x in fullDataSet):
-#          self.msg('erro', 'Preencha todos os campos')
-#          return
+        if any(x.strip() == '' for x in fullDataSet):
+          self.msg('erro', 'Preencha todos os campos')
+          return
         
         #CADASTRAR NO BANCO
-        resposta = self.db.register_cliente(fullDataSet)
-        
+        resposta = self.db.register_cliente(fullDataSet)  
 
         self.msg(resposta[0],resposta[1])
         self.busca_cliente()
 
+    def cadastro_pedido(self):
+        fullDataSet = (
+            self.txt_num_ped.text(), 
+            self.txt_cpf_pedido.text(),
+            self.txt_cliente.text(),
+            self.txt_cod_pedido.text(),
+            self.txt_desc.text(),
+            self.txt_qtde.text(), 
+            self.txt_valortotal.text(),
+            
+        )
+               
+        if any(x.strip() == '' for x in fullDataSet):
+          self.msg('erro', 'Preencha todos os campos')
+          return
+        
+        #CADASTRAR NO BANCO
+        resposta = self.db.register_pedido(fullDataSet)
+        
+        self.msg(resposta[0],resposta[1])
+        self.busca_pedido()
+
+    def busca_cpf(self):
+        cpf_pd = self.txt_cpf_pedido.text()
+        self.db.select_cliente_pedido(cpf_pd)
+        campoCpf = self.db.select_cliente_pedido(cpf_pd)
+        self.txt_cliente.setText(campoCpf[0][1])
+
+    def busca_codigo(self):
+        cod_pd = self.txt_cod_pedido.text()
+        self.db.select_produto_pedido(cod_pd)
+        campoCod = self.db.select_produto_pedido(cod_pd)
+        self.txt_desc.setText(campoCod[0][1])
+        self.txt_valorunitario.setText(campoCod[0][2])
+        
+    def calcular_total(self):
+        qtde_item = float(self.txt_qtde.text())
+        calc_total = float(self.txt_valorunitario.text())
+        self.txt_valortotal.setText(str(float(calc_total) * float(qtde_item)))
 
     def msg(self, tipo, mensage):
         msg = QMessageBox()
@@ -130,7 +178,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             msg.setWindowTitle("Não Concluído")
         elif tipo.lower() == 'aviso':
             msg.setIcon(QMessageBox.Warning)
-            msg.setWindowTitle("Não Concluído")
+            msg.setWindowTitle("Verifique")
         
         msg.setText(mensage)
         msg.exec()
@@ -219,6 +267,47 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             self.msg(result[0],result[1])
 
+#FUNÇÕES DO CADASTRO DE PEDIDO
+
+    def busca_pedido(self):
+        result = self.db.select_all_pedidos()
+        self.tb_cad_pedido.clearContents()
+        self.tb_cad_pedido.setRowCount(len(result))
+
+        for row, text in enumerate(result):
+            for column, data in enumerate(text):
+                self.tb_cad_pedido.setItem(row, column, QTableWidgetItem(str(data)))
+
+    def alterar_pedido(self):
+        dados = []
+        alterar_dados = []
+
+        for row in range(self.tb_cad_pedido.rowCount()):
+            for column in range(self.tb_cad_pedido.columnCount()):
+                dados.append(self.tb_cad_pedido.item(row, column).text())
+
+            alterar_dados.append(dados)
+            dados = []
+        
+        for prod in alterar_dados:
+            result = self.db.update_pedido(tuple(prod))
+
+        self.msg(result[0], result[1])
+        self.busca_pedido()
+
+    def excluir_pedido(self):
+        msgBox = QMessageBox()
+        msgBox.setWindowTitle("Excluir")
+        msgBox.setText("Este pedido será excluído!")
+        msgBox.setInformativeText("Tem certeza que deseja continuar?")
+        msgBox.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        resp = msgBox.exec()
+        if resp == QMessageBox.Yes:
+            codigo = self.tb_cad_pedido.selectionModel().currentIndex().siblingAtColumn(0).data()
+            result = self.db.delete_pedidos(codigo)
+            self.busca_pedido()
+
+            self.msg(result[0],result[1])
 
 
 if __name__ == '__main__':
@@ -227,6 +316,7 @@ if __name__ == '__main__':
     db = Data_base()
     db.create_table_produto()
     db.create_table_cliente()
+    db.create_table_pedido()
     window = MainWindow()
     window.show()
     app.exec()

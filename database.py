@@ -26,9 +26,9 @@ class Data_base:
                     
                     CREATE TABLE IF NOT EXISTS Produto(
                        
-                       CODIGO TEXT,
-                       DESCRICAO TEXT,
-                       VALOR TEXT,
+                       CODIGO TXT,
+                       DESCRICAO TXT,
+                       VALOR TXT,
                        
 
                        PRIMARY KEY(CODIGO)   
@@ -215,3 +215,126 @@ class Data_base:
             return 'erro' 'e'
         finally:
             self.close_connection()
+
+#FUNÇÃO DA TABELA DE PEDIDOS
+
+    def create_table_pedido(self):
+        self.connect()
+        myCursor = self.connection.cursor()
+        myCursor.execute("""
+                    
+                    CREATE TABLE IF NOT EXISTS Pedido(
+                       
+                        NUMPED TXT,
+                        CPFPEDIDO TXT,
+                        CLIENTE TXT,
+                        CODPEDIDO TXT,
+                        DESCPEDIDO TXT,
+                        QUANTIDADE TXT,
+                        VALORTOTAL TXT,
+                       
+
+                       PRIMARY KEY(NUMPED)   
+                    );
+
+                    """)
+        self.close_connection()
+    
+    def register_pedido(self, fullDataSet):
+        self.connect()
+        campos_tabela = ('NUMPED', 'CPFPEDIDO', 'CLIENTE', 'CODPEDIDO', 'DESCPEDIDO', 'QUANTIDADE', 'VALORTOTAL')
+        qtde = ("?,?,?,?,?,?,?")
+        myCursor = self.connection.cursor()
+
+        try:
+            myCursor.execute(f"""INSERT INTO Pedido {campos_tabela}
+
+                VALUES ({qtde})""", fullDataSet)
+            
+            self.connection.commit()
+            return 'ok', "Pedido cadastrado com sucesso!"
+        except Exception as e:
+            print(e)
+            return 'erro', str(e)
+        
+        finally:
+            self.close_connection()
+    
+    def select_all_pedidos(self):
+        try:
+            self.connect()
+            myCursor = self.connection.cursor()
+            myCursor.execute("SELECT * FROM Pedido ORDER BY NUMPED")
+            pedidos = myCursor.fetchall()
+            return pedidos
+        except Exception as e:
+            print(e)
+        finally:
+            self.close_connection()
+
+    def delete_pedidos(self, numpedido):
+        
+        try:
+            self.connect()
+            myCursor = self.connection.cursor()
+            myCursor.execute(f"DELETE FROM Pedido WHERE NUMPED = '{numpedido}'")
+            self.connection.commit()
+            return 'ok', "Pedido deletado com sucesso!"
+        except Exception as e:
+            return 'erro', str(e)
+        finally:
+            self.close_connection()
+
+    def update_pedido(self, fullDataSet):
+
+        self.connect()
+        try:
+            myCursor = self.connection.cursor()
+            myCursor.execute(f""" UPDATE Pedido set
+
+                        NUMPED = '{fullDataSet[0]}',
+                        CLIENTE = '{fullDataSet[1]}'
+                        DESCPEDIDO = '{fullDataSet[2]}',
+                        QUANTIDADE = '{fullDataSet[3]}',
+                        VALORTOTAL = '{fullDataSet[4]}'
+                        
+
+                        WHERE NUMPED = '{fullDataSet[0]}'   """)
+            self.connection.commit()
+            return 'ok', 'Pedido alterado com sucesso!'
+
+        except Exception as e:
+            return 'erro' 'e'
+        finally:
+            self.close_connection()
+
+#FUNÇÃO PARA BUSCAR DADOS DO CLIENTE
+
+    def select_cliente_pedido(self, cpf_pd):
+        try:
+            self.connect()
+            myCursor = self.connection.cursor()
+            myCursor.execute(f"SELECT * FROM Cliente WHERE CPF = '{cpf_pd}'")
+            #myCursor.execute(f"SELECT * FROM Cliente WHERE REPLACE(CPF, '.', '') = REPLACE(?, '.', '') AND REPLACE(CPF, '-', '') = REPLACE(?, '-', '')", {cpf})
+            clientes = myCursor.fetchall()
+            return clientes
+        except Exception as e:
+            print(e)
+        finally:
+            self.close_connection()
+
+#FUNÇÃO PARA BUSCAR DADOS DO PRODUTO
+
+    def select_produto_pedido(self, cod_pd):
+        try:
+            self.connect()
+            myCursor = self.connection.cursor()
+            myCursor.execute(f"SELECT * FROM Produto WHERE CODIGO  = '{cod_pd}'")
+            #myCursor.execute(f"SELECT * FROM Cliente WHERE REPLACE(CPF, '.', '') = REPLACE(?, '.', '') AND REPLACE(CPF, '-', '') = REPLACE(?, '-', '')", {cpf})
+            produtos = myCursor.fetchall()
+            return produtos
+        except Exception as e:
+            print(e)
+        finally:
+            self.close_connection()
+    
