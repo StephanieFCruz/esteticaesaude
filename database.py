@@ -228,9 +228,10 @@ class Data_base:
                         NUMPED TXT,
                         CPFPEDIDO TXT,
                         CLIENTE TXT,
-                        CODPEDIDO TXT,
-                        DESCPEDIDO TXT,
+                        CODPRODUTO TXT,
+                        DESCPPRODUTO TXT,
                         QUANTIDADE TXT,
+                        VALORUNITARIO TXT,
                         VALORTOTAL TXT,
                        
 
@@ -242,8 +243,8 @@ class Data_base:
     
     def register_pedido(self, fullDataSet):
         self.connect()
-        campos_tabela = ('NUMPED', 'CPFPEDIDO', 'CLIENTE', 'CODPEDIDO', 'DESCPEDIDO', 'QUANTIDADE', 'VALORTOTAL')
-        qtde = ("?,?,?,?,?,?,?")
+        campos_tabela = ('NUMPED', 'CPFPEDIDO', 'CLIENTE', 'CODPRODUTO', 'DESCPPRODUTO', 'QUANTIDADE', 'VALORUNITARIO', 'VALORTOTAL')
+        qtde = ("?,?,?,?,?,?,?,?")
         myCursor = self.connection.cursor()
 
         try:
@@ -293,10 +294,13 @@ class Data_base:
             myCursor.execute(f""" UPDATE Pedido set
 
                         NUMPED = '{fullDataSet[0]}',
-                        CLIENTE = '{fullDataSet[1]}'
-                        DESCPEDIDO = '{fullDataSet[2]}',
-                        QUANTIDADE = '{fullDataSet[3]}',
-                        VALORTOTAL = '{fullDataSet[4]}'
+                        CPFPEDIDO = '{fullDataSet[1]}',
+                        CLIENTE = '{fullDataSet[2]}',
+                        CODPRPDUTO = '{fullDataSet[3]}',
+                        DESCPRODUTO = '{fullDataSet[4]}',
+                        QUANTIDADE = '{fullDataSet[5]}',
+                        VALORUNITARIO = {fullDataSet[6]},
+                        VALORTOTAL = '{fullDataSet[7]}',
                         
 
                         WHERE NUMPED = '{fullDataSet[0]}'   """)
@@ -330,7 +334,6 @@ class Data_base:
             self.connect()
             myCursor = self.connection.cursor()
             myCursor.execute(f"SELECT * FROM Produto WHERE CODIGO  = '{cod_pd}'")
-            #myCursor.execute(f"SELECT * FROM Cliente WHERE REPLACE(CPF, '.', '') = REPLACE(?, '.', '') AND REPLACE(CPF, '-', '') = REPLACE(?, '-', '')", {cpf})
             produtos = myCursor.fetchall()
             return produtos
         except Exception as e:

@@ -136,6 +136,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.txt_cod_pedido.text(),
             self.txt_desc.text(),
             self.txt_qtde.text(), 
+            self.txt_valorunitario.text(),
             self.txt_valortotal.text(),
             
         )
@@ -279,17 +280,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.tb_cad_pedido.setItem(row, column, QTableWidgetItem(str(data)))
 
     def alterar_pedido(self):
-        dados = []
-        alterar_dados = []
+        dadosPedido = []
+        alterar_dadosPedido = []
 
         for row in range(self.tb_cad_pedido.rowCount()):
             for column in range(self.tb_cad_pedido.columnCount()):
-                dados.append(self.tb_cad_pedido.item(row, column).text())
+                dadosPedido.append(self.tb_cad_pedido.item(row, column).text())
 
-            alterar_dados.append(dados)
-            dados = []
-        
-        for prod in alterar_dados:
+            alterar_dadosPedido.append(dadosPedido)
+            dadosPedido = []
+        print("Chegou aqui!")
+        for prod in alterar_dadosPedido:
             result = self.db.update_pedido(tuple(prod))
 
         self.msg(result[0], result[1])

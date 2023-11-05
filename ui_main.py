@@ -105,7 +105,7 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.page, u"Menu")
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
-        self.page_2.setGeometry(QRect(0, 0, 185, 589))
+        self.page_2.setGeometry(QRect(0, 0, 98, 89))
         self.verticalLayout_15 = QVBoxLayout(self.page_2)
         self.verticalLayout_15.setObjectName(u"verticalLayout_15")
         self.textBrowser = QTextBrowser(self.page_2)
@@ -426,8 +426,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.tb_cad_pedido = QTableWidget(self.layoutWidget1)
-        if (self.tb_cad_pedido.columnCount() < 5):
-            self.tb_cad_pedido.setColumnCount(5)
+        if (self.tb_cad_pedido.columnCount() < 8):
+            self.tb_cad_pedido.setColumnCount(8)
         __qtablewidgetitem13 = QTableWidgetItem()
         self.tb_cad_pedido.setHorizontalHeaderItem(0, __qtablewidgetitem13)
         __qtablewidgetitem14 = QTableWidgetItem()
@@ -438,6 +438,12 @@ class Ui_MainWindow(object):
         self.tb_cad_pedido.setHorizontalHeaderItem(3, __qtablewidgetitem16)
         __qtablewidgetitem17 = QTableWidgetItem()
         self.tb_cad_pedido.setHorizontalHeaderItem(4, __qtablewidgetitem17)
+        __qtablewidgetitem18 = QTableWidgetItem()
+        self.tb_cad_pedido.setHorizontalHeaderItem(5, __qtablewidgetitem18)
+        __qtablewidgetitem19 = QTableWidgetItem()
+        self.tb_cad_pedido.setHorizontalHeaderItem(6, __qtablewidgetitem19)
+        __qtablewidgetitem20 = QTableWidgetItem()
+        self.tb_cad_pedido.setHorizontalHeaderItem(7, __qtablewidgetitem20)
         self.tb_cad_pedido.setObjectName(u"tb_cad_pedido")
 
         self.horizontalLayout_7.addWidget(self.tb_cad_pedido)
@@ -537,15 +543,15 @@ class Ui_MainWindow(object):
         self.tb_cad_produto = QTableWidget(self.tela_produtos)
         if (self.tb_cad_produto.columnCount() < 3):
             self.tb_cad_produto.setColumnCount(3)
-        __qtablewidgetitem18 = QTableWidgetItem()
-        __qtablewidgetitem18.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
-        self.tb_cad_produto.setHorizontalHeaderItem(0, __qtablewidgetitem18)
-        __qtablewidgetitem19 = QTableWidgetItem()
-        __qtablewidgetitem19.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
-        self.tb_cad_produto.setHorizontalHeaderItem(1, __qtablewidgetitem19)
-        __qtablewidgetitem20 = QTableWidgetItem()
-        __qtablewidgetitem20.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
-        self.tb_cad_produto.setHorizontalHeaderItem(2, __qtablewidgetitem20)
+        __qtablewidgetitem21 = QTableWidgetItem()
+        __qtablewidgetitem21.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
+        self.tb_cad_produto.setHorizontalHeaderItem(0, __qtablewidgetitem21)
+        __qtablewidgetitem22 = QTableWidgetItem()
+        __qtablewidgetitem22.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
+        self.tb_cad_produto.setHorizontalHeaderItem(1, __qtablewidgetitem22)
+        __qtablewidgetitem23 = QTableWidgetItem()
+        __qtablewidgetitem23.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
+        self.tb_cad_produto.setHorizontalHeaderItem(2, __qtablewidgetitem23)
         self.tb_cad_produto.setObjectName(u"tb_cad_produto")
         self.tb_cad_produto.setSelectionBehavior(QAbstractItemView.SelectRows)
 
@@ -615,7 +621,7 @@ class Ui_MainWindow(object):
         self.Pages.setCurrentIndex(3)
         self.tabWidget.setCurrentIndex(0)
         self.tabWidget_4.setCurrentIndex(0)
-        self.tabWidget_2.setCurrentIndex(0)
+        self.tabWidget_2.setCurrentIndex(1)
         self.tabWidget_3.setCurrentIndex(0)
 
 
@@ -703,16 +709,22 @@ class Ui_MainWindow(object):
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tela_cad_pedido), QCoreApplication.translate("MainWindow", u"Cadastro", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Pedidos</span></p></body></html>", None))
         ___qtablewidgetitem13 = self.tb_cad_pedido.horizontalHeaderItem(0)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"NUMERO DO PEDIDO", None));
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"NUMPEDIDO", None));
         ___qtablewidgetitem14 = self.tb_cad_pedido.horizontalHeaderItem(1)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"CLIENTE", None));
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"CPFPEDIDO", None));
         ___qtablewidgetitem15 = self.tb_cad_pedido.horizontalHeaderItem(2)
-        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"PEDIDO", None));
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"CLIENTE", None));
         ___qtablewidgetitem16 = self.tb_cad_pedido.horizontalHeaderItem(3)
-        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"QTDE", None));
+        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"CODIGO DO PRODUTO", None));
         ___qtablewidgetitem17 = self.tb_cad_pedido.horizontalHeaderItem(4)
-        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"VALOR TOTAL", None));
-        self.btn_alterar_pedido.setText(QCoreApplication.translate("MainWindow", u"Alterar", None))
+        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"DESCRICAO DO PRODUTO", None));
+        ___qtablewidgetitem18 = self.tb_cad_pedido.horizontalHeaderItem(5)
+        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"QTDE", None));
+        ___qtablewidgetitem19 = self.tb_cad_pedido.horizontalHeaderItem(6)
+        ___qtablewidgetitem19.setText(QCoreApplication.translate("MainWindow", u"VALORUNITARIO", None));
+        ___qtablewidgetitem20 = self.tb_cad_pedido.horizontalHeaderItem(7)
+        ___qtablewidgetitem20.setText(QCoreApplication.translate("MainWindow", u"VALORTOTAL", None));
+        self.btn_alterar_pedido.setText(QCoreApplication.translate("MainWindow", u"Faturar", None))
         self.btn_excluir_pedido.setText(QCoreApplication.translate("MainWindow", u"Excluir", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tb_pedidos), QCoreApplication.translate("MainWindow", u"Pedidos", None))
         self.txt_valor.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Valor R$", None))
@@ -722,12 +734,12 @@ class Ui_MainWindow(object):
         self.btn_cadastrar_produto.setText(QCoreApplication.translate("MainWindow", u"Cadastrar Produto", None))
         self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tela_cadastrar_produto), QCoreApplication.translate("MainWindow", u"Cadastrar", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Produto</span></p></body></html>", None))
-        ___qtablewidgetitem18 = self.tb_cad_produto.horizontalHeaderItem(0)
-        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"CODIGO", None));
-        ___qtablewidgetitem19 = self.tb_cad_produto.horizontalHeaderItem(1)
-        ___qtablewidgetitem19.setText(QCoreApplication.translate("MainWindow", u"DESCRICAO", None));
-        ___qtablewidgetitem20 = self.tb_cad_produto.horizontalHeaderItem(2)
-        ___qtablewidgetitem20.setText(QCoreApplication.translate("MainWindow", u"VALOR R$", None));
+        ___qtablewidgetitem21 = self.tb_cad_produto.horizontalHeaderItem(0)
+        ___qtablewidgetitem21.setText(QCoreApplication.translate("MainWindow", u"CODIGO", None));
+        ___qtablewidgetitem22 = self.tb_cad_produto.horizontalHeaderItem(1)
+        ___qtablewidgetitem22.setText(QCoreApplication.translate("MainWindow", u"DESCRICAO", None));
+        ___qtablewidgetitem23 = self.tb_cad_produto.horizontalHeaderItem(2)
+        ___qtablewidgetitem23.setText(QCoreApplication.translate("MainWindow", u"VALOR R$", None));
         self.btn_alterar_prod.setText(QCoreApplication.translate("MainWindow", u"Alterar", None))
         self.btn_excluir_prod.setText(QCoreApplication.translate("MainWindow", u"Excluir", None))
         self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tela_produtos), QCoreApplication.translate("MainWindow", u"Produtos", None))

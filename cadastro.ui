@@ -164,8 +164,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>185</width>
-               <height>589</height>
+               <width>98</width>
+               <height>89</height>
               </rect>
              </property>
              <attribute name="label">
@@ -730,7 +730,7 @@ background-color:none;
               <item>
                <widget class="QTabWidget" name="tabWidget_2">
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="tela_cad_pedido">
                  <attribute name="title">
@@ -989,7 +989,12 @@ background-color:none;
                     <widget class="QTableWidget" name="tb_cad_pedido">
                      <column>
                       <property name="text">
-                       <string>NUMERO DO PEDIDO</string>
+                       <string>NUMPEDIDO</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>CPFPEDIDO</string>
                       </property>
                      </column>
                      <column>
@@ -999,7 +1004,12 @@ background-color:none;
                      </column>
                      <column>
                       <property name="text">
-                       <string>PEDIDO</string>
+                       <string>CODIGO DO PRODUTO</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>DESCRICAO DO PRODUTO</string>
                       </property>
                      </column>
                      <column>
@@ -1009,7 +1019,12 @@ background-color:none;
                      </column>
                      <column>
                       <property name="text">
-                       <string>VALOR TOTAL</string>
+                       <string>VALORUNITARIO</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>VALORTOTAL</string>
                       </property>
                      </column>
                     </widget>
@@ -1026,7 +1041,7 @@ background-color:none;
                       <item>
                        <widget class="QPushButton" name="btn_alterar_pedido">
                         <property name="text">
-                         <string>Alterar</string>
+                         <string>Faturar</string>
                         </property>
                        </widget>
                       </item>
