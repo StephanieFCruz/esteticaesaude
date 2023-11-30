@@ -273,7 +273,7 @@ class Data_base:
         finally:
             self.close_connection()
 
-    def delete_pedidos(self, numpedido):
+    def delete_pedidos(self, numpedido):       
         
         try:
             self.connect()
@@ -319,7 +319,6 @@ class Data_base:
             self.connect()
             myCursor = self.connection.cursor()
             myCursor.execute(f"SELECT * FROM Cliente WHERE CPF = '{cpf_pd}'")
-            #myCursor.execute(f"SELECT * FROM Cliente WHERE REPLACE(CPF, '.', '') = REPLACE(?, '.', '') AND REPLACE(CPF, '-', '') = REPLACE(?, '-', '')", {cpf})
             clientes = myCursor.fetchall()
             return clientes
         except Exception as e:
@@ -340,4 +339,56 @@ class Data_base:
             print(e)
         finally:
             self.close_connection()
+
+#FUNÇÃO PARA FATURAR PEDIDO
+
+    def create_table_hist(self):
+        self.connect()
+        myCursor = self.connection.cursor()
+        myCursor.execute("""
+                    
+                    CREATE TABLE IF NOT EXISTS Historico(
+                       
+                        NUMPED TXT,
+                        CPFPEDIDO TXT,
+                        CLIENTE TXT,
+                        CODPRODUTO TXT,
+                        DESCPPRODUTO TXT,
+                        QUANTIDADE TXT,
+                        VALORUNITARIO TXT,
+                        VALORTOTAL TXT,
+                       
+
+                       PRIMARY KEY(NUMPED)  
+                    );
+
+                    """)
+        self.close_connection()
+
+#FUNÇÃO TELA DE HISTORICO
     
+    def pedido_historico(self, pedidoFaturado):
+        try:
+            self.connect()
+            myCursor = self.connection.cursor()
+            pedido = pedidoFaturado
+            myCursor.execute(f"INSERT INTO Historico SELECT * FROM Pedido WHERE NUMPED = '{pedido}'")
+            self.connection.commit()
+            return 'ok', "Pedido faturado com sucesso!"
+        except Exception as e:
+            return 'erro', str(e)
+        finally:
+            self.close_connection()
+
+    def select_all_historico(self):
+        try:
+            self.connect()
+            myCursor = self.connection.cursor()
+            myCursor.execute("SELECT * FROM Historico ORDER BY NUMPED")
+            historicos = myCursor.fetchall()
+            return historicos
+        except Exception as e:
+            print(e)
+        finally:
+            self.close_connection()
+            

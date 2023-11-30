@@ -26,14 +26,14 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1041, 743)
+        MainWindow.resize(1077, 776)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.left_frame = QFrame(self.centralwidget)
         self.left_frame.setObjectName(u"left_frame")
-        self.left_frame.setMinimumSize(QSize(220, 0))
+        self.left_frame.setMinimumSize(QSize(0, 0))
         self.left_frame.setMaximumSize(QSize(0, 16777215))
         self.left_frame.setFrameShape(QFrame.StyledPanel)
         self.left_frame.setFrameShadow(QFrame.Raised)
@@ -41,7 +41,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.logo_frame = QFrame(self.left_frame)
         self.logo_frame.setObjectName(u"logo_frame")
-        self.logo_frame.setMinimumSize(QSize(205, 0))
+        self.logo_frame.setMinimumSize(QSize(220, 0))
         self.logo_frame.setFrameShape(QFrame.StyledPanel)
         self.logo_frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.logo_frame)
@@ -52,11 +52,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addWidget(self.label_2)
 
 
-        self.verticalLayout_2.addWidget(self.logo_frame, 0, Qt.AlignLeft)
+        self.verticalLayout_2.addWidget(self.logo_frame, 0, Qt.AlignHCenter)
 
         self.buttons_frame = QFrame(self.left_frame)
         self.buttons_frame.setObjectName(u"buttons_frame")
-        self.buttons_frame.setMinimumSize(QSize(205, 0))
+        self.buttons_frame.setMinimumSize(QSize(220, 0))
         self.buttons_frame.setFrameShape(QFrame.StyledPanel)
         self.buttons_frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_4 = QVBoxLayout(self.buttons_frame)
@@ -65,38 +65,50 @@ class Ui_MainWindow(object):
         self.toolBox.setObjectName(u"toolBox")
         self.page = QWidget()
         self.page.setObjectName(u"page")
-        self.page.setGeometry(QRect(0, 0, 185, 589))
+        self.page.setGeometry(QRect(0, 0, 203, 605))
         self.verticalLayout_7 = QVBoxLayout(self.page)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.btn_home = QPushButton(self.page)
         self.btn_home.setObjectName(u"btn_home")
+        self.btn_home.setMinimumSize(QSize(185, 35))
+        self.btn_home.setMaximumSize(QSize(170, 25))
         self.btn_home.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_home.setIconSize(QSize(14, 14))
 
-        self.verticalLayout_7.addWidget(self.btn_home)
+        self.verticalLayout_7.addWidget(self.btn_home, 0, Qt.AlignHCenter)
 
         self.btn_cad_produto = QPushButton(self.page)
         self.btn_cad_produto.setObjectName(u"btn_cad_produto")
+        self.btn_cad_produto.setMinimumSize(QSize(185, 35))
+        self.btn_cad_produto.setMaximumSize(QSize(170, 25))
         self.btn_cad_produto.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_cad_produto.setIconSize(QSize(14, 14))
 
-        self.verticalLayout_7.addWidget(self.btn_cad_produto)
+        self.verticalLayout_7.addWidget(self.btn_cad_produto, 0, Qt.AlignHCenter)
 
         self.btn_cad_cliente = QPushButton(self.page)
         self.btn_cad_cliente.setObjectName(u"btn_cad_cliente")
+        self.btn_cad_cliente.setMinimumSize(QSize(185, 35))
+        self.btn_cad_cliente.setMaximumSize(QSize(170, 25))
         self.btn_cad_cliente.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.verticalLayout_7.addWidget(self.btn_cad_cliente)
+        self.verticalLayout_7.addWidget(self.btn_cad_cliente, 0, Qt.AlignHCenter)
 
         self.btn_cad_pedido = QPushButton(self.page)
         self.btn_cad_pedido.setObjectName(u"btn_cad_pedido")
+        self.btn_cad_pedido.setMinimumSize(QSize(185, 35))
+        self.btn_cad_pedido.setMaximumSize(QSize(170, 25))
         self.btn_cad_pedido.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.verticalLayout_7.addWidget(self.btn_cad_pedido)
+        self.verticalLayout_7.addWidget(self.btn_cad_pedido, 0, Qt.AlignHCenter)
 
         self.btn_historico = QPushButton(self.page)
         self.btn_historico.setObjectName(u"btn_historico")
+        self.btn_historico.setMinimumSize(QSize(185, 35))
+        self.btn_historico.setMaximumSize(QSize(170, 25))
         self.btn_historico.setCursor(QCursor(Qt.PointingHandCursor))
 
-        self.verticalLayout_7.addWidget(self.btn_historico)
+        self.verticalLayout_7.addWidget(self.btn_historico, 0, Qt.AlignHCenter)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -121,7 +133,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.buttons_frame, 0, Qt.AlignHCenter)
 
 
-        self.horizontalLayout.addWidget(self.left_frame)
+        self.horizontalLayout.addWidget(self.left_frame, 0, Qt.AlignLeft)
 
         self.main_container = QFrame(self.centralwidget)
         self.main_container.setObjectName(u"main_container")
@@ -225,6 +237,7 @@ class Ui_MainWindow(object):
         self.txt_cpf = QLineEdit(self.frame_3)
         self.txt_cpf.setObjectName(u"txt_cpf")
         self.txt_cpf.setGeometry(QRect(10, 100, 133, 20))
+        self.txt_cpf.setMaxLength(11)
         self.txt_cpf.setAlignment(Qt.AlignCenter)
         self.txt_dt_nascimento = QLineEdit(self.frame_3)
         self.txt_dt_nascimento.setObjectName(u"txt_dt_nascimento")
@@ -342,10 +355,41 @@ class Ui_MainWindow(object):
         self.tabWidget_4.setObjectName(u"tabWidget_4")
         self.tb_historico = QWidget()
         self.tb_historico.setObjectName(u"tb_historico")
+        self.layoutWidget1 = QWidget(self.tb_historico)
+        self.layoutWidget1.setObjectName(u"layoutWidget1")
+        self.layoutWidget1.setGeometry(QRect(9, 9, 691, 491))
+        self.verticalLayout_17 = QVBoxLayout(self.layoutWidget1)
+        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.verticalLayout_17.setContentsMargins(0, 0, 0, 0)
+        self.tab_historico = QTableWidget(self.layoutWidget1)
+        if (self.tab_historico.columnCount() < 8):
+            self.tab_historico.setColumnCount(8)
+        __qtablewidgetitem13 = QTableWidgetItem()
+        self.tab_historico.setHorizontalHeaderItem(0, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.tab_historico.setHorizontalHeaderItem(1, __qtablewidgetitem14)
+        __qtablewidgetitem15 = QTableWidgetItem()
+        self.tab_historico.setHorizontalHeaderItem(2, __qtablewidgetitem15)
+        __qtablewidgetitem16 = QTableWidgetItem()
+        self.tab_historico.setHorizontalHeaderItem(3, __qtablewidgetitem16)
+        __qtablewidgetitem17 = QTableWidgetItem()
+        self.tab_historico.setHorizontalHeaderItem(4, __qtablewidgetitem17)
+        __qtablewidgetitem18 = QTableWidgetItem()
+        self.tab_historico.setHorizontalHeaderItem(5, __qtablewidgetitem18)
+        __qtablewidgetitem19 = QTableWidgetItem()
+        self.tab_historico.setHorizontalHeaderItem(6, __qtablewidgetitem19)
+        __qtablewidgetitem20 = QTableWidgetItem()
+        self.tab_historico.setHorizontalHeaderItem(7, __qtablewidgetitem20)
+        self.tab_historico.setObjectName(u"tab_historico")
+
+        self.verticalLayout_17.addWidget(self.tab_historico)
+
+        self.btn_historico_export = QPushButton(self.layoutWidget1)
+        self.btn_historico_export.setObjectName(u"btn_historico_export")
+
+        self.verticalLayout_17.addWidget(self.btn_historico_export, 0, Qt.AlignHCenter)
+
         self.tabWidget_4.addTab(self.tb_historico, "")
-        self.tab_10 = QWidget()
-        self.tab_10.setObjectName(u"tab_10")
-        self.tabWidget_4.addTab(self.tab_10, "")
 
         self.verticalLayout_11.addWidget(self.tabWidget_4)
 
@@ -419,45 +463,45 @@ class Ui_MainWindow(object):
         self.label_10 = QLabel(self.tb_pedidos)
         self.label_10.setObjectName(u"label_10")
         self.label_10.setGeometry(QRect(276, 50, 121, 20))
-        self.layoutWidget1 = QWidget(self.tb_pedidos)
-        self.layoutWidget1.setObjectName(u"layoutWidget1")
-        self.layoutWidget1.setGeometry(QRect(80, 150, 581, 194))
-        self.horizontalLayout_7 = QHBoxLayout(self.layoutWidget1)
+        self.layoutWidget2 = QWidget(self.tb_pedidos)
+        self.layoutWidget2.setObjectName(u"layoutWidget2")
+        self.layoutWidget2.setGeometry(QRect(80, 150, 581, 194))
+        self.horizontalLayout_7 = QHBoxLayout(self.layoutWidget2)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.tb_cad_pedido = QTableWidget(self.layoutWidget1)
+        self.tb_cad_pedido = QTableWidget(self.layoutWidget2)
         if (self.tb_cad_pedido.columnCount() < 8):
             self.tb_cad_pedido.setColumnCount(8)
-        __qtablewidgetitem13 = QTableWidgetItem()
-        self.tb_cad_pedido.setHorizontalHeaderItem(0, __qtablewidgetitem13)
-        __qtablewidgetitem14 = QTableWidgetItem()
-        self.tb_cad_pedido.setHorizontalHeaderItem(1, __qtablewidgetitem14)
-        __qtablewidgetitem15 = QTableWidgetItem()
-        self.tb_cad_pedido.setHorizontalHeaderItem(2, __qtablewidgetitem15)
-        __qtablewidgetitem16 = QTableWidgetItem()
-        self.tb_cad_pedido.setHorizontalHeaderItem(3, __qtablewidgetitem16)
-        __qtablewidgetitem17 = QTableWidgetItem()
-        self.tb_cad_pedido.setHorizontalHeaderItem(4, __qtablewidgetitem17)
-        __qtablewidgetitem18 = QTableWidgetItem()
-        self.tb_cad_pedido.setHorizontalHeaderItem(5, __qtablewidgetitem18)
-        __qtablewidgetitem19 = QTableWidgetItem()
-        self.tb_cad_pedido.setHorizontalHeaderItem(6, __qtablewidgetitem19)
-        __qtablewidgetitem20 = QTableWidgetItem()
-        self.tb_cad_pedido.setHorizontalHeaderItem(7, __qtablewidgetitem20)
+        __qtablewidgetitem21 = QTableWidgetItem()
+        self.tb_cad_pedido.setHorizontalHeaderItem(0, __qtablewidgetitem21)
+        __qtablewidgetitem22 = QTableWidgetItem()
+        self.tb_cad_pedido.setHorizontalHeaderItem(1, __qtablewidgetitem22)
+        __qtablewidgetitem23 = QTableWidgetItem()
+        self.tb_cad_pedido.setHorizontalHeaderItem(2, __qtablewidgetitem23)
+        __qtablewidgetitem24 = QTableWidgetItem()
+        self.tb_cad_pedido.setHorizontalHeaderItem(3, __qtablewidgetitem24)
+        __qtablewidgetitem25 = QTableWidgetItem()
+        self.tb_cad_pedido.setHorizontalHeaderItem(4, __qtablewidgetitem25)
+        __qtablewidgetitem26 = QTableWidgetItem()
+        self.tb_cad_pedido.setHorizontalHeaderItem(5, __qtablewidgetitem26)
+        __qtablewidgetitem27 = QTableWidgetItem()
+        self.tb_cad_pedido.setHorizontalHeaderItem(6, __qtablewidgetitem27)
+        __qtablewidgetitem28 = QTableWidgetItem()
+        self.tb_cad_pedido.setHorizontalHeaderItem(7, __qtablewidgetitem28)
         self.tb_cad_pedido.setObjectName(u"tb_cad_pedido")
 
         self.horizontalLayout_7.addWidget(self.tb_cad_pedido)
 
-        self.frame_6 = QFrame(self.layoutWidget1)
+        self.frame_6 = QFrame(self.layoutWidget2)
         self.frame_6.setObjectName(u"frame_6")
         self.frame_6.setFrameShape(QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QFrame.Raised)
         self.verticalLayout_16 = QVBoxLayout(self.frame_6)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
-        self.btn_alterar_pedido = QPushButton(self.frame_6)
-        self.btn_alterar_pedido.setObjectName(u"btn_alterar_pedido")
+        self.btn_faturar_pedido = QPushButton(self.frame_6)
+        self.btn_faturar_pedido.setObjectName(u"btn_faturar_pedido")
 
-        self.verticalLayout_16.addWidget(self.btn_alterar_pedido)
+        self.verticalLayout_16.addWidget(self.btn_faturar_pedido)
 
         self.btn_excluir_pedido = QPushButton(self.frame_6)
         self.btn_excluir_pedido.setObjectName(u"btn_excluir_pedido")
@@ -543,15 +587,15 @@ class Ui_MainWindow(object):
         self.tb_cad_produto = QTableWidget(self.tela_produtos)
         if (self.tb_cad_produto.columnCount() < 3):
             self.tb_cad_produto.setColumnCount(3)
-        __qtablewidgetitem21 = QTableWidgetItem()
-        __qtablewidgetitem21.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
-        self.tb_cad_produto.setHorizontalHeaderItem(0, __qtablewidgetitem21)
-        __qtablewidgetitem22 = QTableWidgetItem()
-        __qtablewidgetitem22.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
-        self.tb_cad_produto.setHorizontalHeaderItem(1, __qtablewidgetitem22)
-        __qtablewidgetitem23 = QTableWidgetItem()
-        __qtablewidgetitem23.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
-        self.tb_cad_produto.setHorizontalHeaderItem(2, __qtablewidgetitem23)
+        __qtablewidgetitem29 = QTableWidgetItem()
+        __qtablewidgetitem29.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
+        self.tb_cad_produto.setHorizontalHeaderItem(0, __qtablewidgetitem29)
+        __qtablewidgetitem30 = QTableWidgetItem()
+        __qtablewidgetitem30.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
+        self.tb_cad_produto.setHorizontalHeaderItem(1, __qtablewidgetitem30)
+        __qtablewidgetitem31 = QTableWidgetItem()
+        __qtablewidgetitem31.setTextAlignment(Qt.AlignLeading|Qt.AlignVCenter);
+        self.tb_cad_produto.setHorizontalHeaderItem(2, __qtablewidgetitem31)
         self.tb_cad_produto.setObjectName(u"tb_cad_produto")
         self.tb_cad_produto.setSelectionBehavior(QAbstractItemView.SelectRows)
 
@@ -618,7 +662,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.toolBox.setCurrentIndex(0)
-        self.Pages.setCurrentIndex(3)
+        self.Pages.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(0)
         self.tabWidget_4.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(1)
@@ -692,8 +736,24 @@ class Ui_MainWindow(object):
         self.btn_alterar_cli.setText(QCoreApplication.translate("MainWindow", u"Alterar", None))
         self.btn_excluir_cli.setText(QCoreApplication.translate("MainWindow", u"Excluir", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.widget), QCoreApplication.translate("MainWindow", u"Clientes", None))
+        ___qtablewidgetitem13 = self.tab_historico.horizontalHeaderItem(0)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Numero pedido", None));
+        ___qtablewidgetitem14 = self.tab_historico.horizontalHeaderItem(1)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"CPF", None));
+        ___qtablewidgetitem15 = self.tab_historico.horizontalHeaderItem(2)
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Nome", None));
+        ___qtablewidgetitem16 = self.tab_historico.horizontalHeaderItem(3)
+        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"Codigo", None));
+        ___qtablewidgetitem17 = self.tab_historico.horizontalHeaderItem(4)
+        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"Descri\u00e7\u00e3o", None));
+        ___qtablewidgetitem18 = self.tab_historico.horizontalHeaderItem(5)
+        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"QTDE", None));
+        ___qtablewidgetitem19 = self.tab_historico.horizontalHeaderItem(6)
+        ___qtablewidgetitem19.setText(QCoreApplication.translate("MainWindow", u"Valor Unit\u00e1rio", None));
+        ___qtablewidgetitem20 = self.tab_historico.horizontalHeaderItem(7)
+        ___qtablewidgetitem20.setText(QCoreApplication.translate("MainWindow", u"Valor Total", None));
+        self.btn_historico_export.setText(QCoreApplication.translate("MainWindow", u"Exportar Hist\u00f3rico", None))
         self.tabWidget_4.setTabText(self.tabWidget_4.indexOf(self.tb_historico), QCoreApplication.translate("MainWindow", u"Hist\u00f3rico", None))
-        self.tabWidget_4.setTabText(self.tabWidget_4.indexOf(self.tab_10), QCoreApplication.translate("MainWindow", u"Tab 2", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Cadastro de Pedido</span></p></body></html>", None))
         self.txt_num_ped.setPlaceholderText(QCoreApplication.translate("MainWindow", u"N\u00ba do Pedido", None))
         self.txt_desc.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Produto e/ou Servi\u00e7o", None))
@@ -708,23 +768,23 @@ class Ui_MainWindow(object):
         self.txt_valortotal.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Valor Total R$", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tela_cad_pedido), QCoreApplication.translate("MainWindow", u"Cadastro", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Pedidos</span></p></body></html>", None))
-        ___qtablewidgetitem13 = self.tb_cad_pedido.horizontalHeaderItem(0)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"NUMPEDIDO", None));
-        ___qtablewidgetitem14 = self.tb_cad_pedido.horizontalHeaderItem(1)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"CPFPEDIDO", None));
-        ___qtablewidgetitem15 = self.tb_cad_pedido.horizontalHeaderItem(2)
-        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"CLIENTE", None));
-        ___qtablewidgetitem16 = self.tb_cad_pedido.horizontalHeaderItem(3)
-        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"CODIGO DO PRODUTO", None));
-        ___qtablewidgetitem17 = self.tb_cad_pedido.horizontalHeaderItem(4)
-        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"DESCRICAO DO PRODUTO", None));
-        ___qtablewidgetitem18 = self.tb_cad_pedido.horizontalHeaderItem(5)
-        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"QTDE", None));
-        ___qtablewidgetitem19 = self.tb_cad_pedido.horizontalHeaderItem(6)
-        ___qtablewidgetitem19.setText(QCoreApplication.translate("MainWindow", u"VALORUNITARIO", None));
-        ___qtablewidgetitem20 = self.tb_cad_pedido.horizontalHeaderItem(7)
-        ___qtablewidgetitem20.setText(QCoreApplication.translate("MainWindow", u"VALORTOTAL", None));
-        self.btn_alterar_pedido.setText(QCoreApplication.translate("MainWindow", u"Faturar", None))
+        ___qtablewidgetitem21 = self.tb_cad_pedido.horizontalHeaderItem(0)
+        ___qtablewidgetitem21.setText(QCoreApplication.translate("MainWindow", u"NUMPEDIDO", None));
+        ___qtablewidgetitem22 = self.tb_cad_pedido.horizontalHeaderItem(1)
+        ___qtablewidgetitem22.setText(QCoreApplication.translate("MainWindow", u"CPFPEDIDO", None));
+        ___qtablewidgetitem23 = self.tb_cad_pedido.horizontalHeaderItem(2)
+        ___qtablewidgetitem23.setText(QCoreApplication.translate("MainWindow", u"CLIENTE", None));
+        ___qtablewidgetitem24 = self.tb_cad_pedido.horizontalHeaderItem(3)
+        ___qtablewidgetitem24.setText(QCoreApplication.translate("MainWindow", u"CODIGO DO PRODUTO", None));
+        ___qtablewidgetitem25 = self.tb_cad_pedido.horizontalHeaderItem(4)
+        ___qtablewidgetitem25.setText(QCoreApplication.translate("MainWindow", u"DESCRICAO DO PRODUTO", None));
+        ___qtablewidgetitem26 = self.tb_cad_pedido.horizontalHeaderItem(5)
+        ___qtablewidgetitem26.setText(QCoreApplication.translate("MainWindow", u"QTDE", None));
+        ___qtablewidgetitem27 = self.tb_cad_pedido.horizontalHeaderItem(6)
+        ___qtablewidgetitem27.setText(QCoreApplication.translate("MainWindow", u"VALORUNITARIO", None));
+        ___qtablewidgetitem28 = self.tb_cad_pedido.horizontalHeaderItem(7)
+        ___qtablewidgetitem28.setText(QCoreApplication.translate("MainWindow", u"VALORTOTAL", None));
+        self.btn_faturar_pedido.setText(QCoreApplication.translate("MainWindow", u"Faturar", None))
         self.btn_excluir_pedido.setText(QCoreApplication.translate("MainWindow", u"Excluir", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tb_pedidos), QCoreApplication.translate("MainWindow", u"Pedidos", None))
         self.txt_valor.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Valor R$", None))
@@ -734,12 +794,12 @@ class Ui_MainWindow(object):
         self.btn_cadastrar_produto.setText(QCoreApplication.translate("MainWindow", u"Cadastrar Produto", None))
         self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tela_cadastrar_produto), QCoreApplication.translate("MainWindow", u"Cadastrar", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Produto</span></p></body></html>", None))
-        ___qtablewidgetitem21 = self.tb_cad_produto.horizontalHeaderItem(0)
-        ___qtablewidgetitem21.setText(QCoreApplication.translate("MainWindow", u"CODIGO", None));
-        ___qtablewidgetitem22 = self.tb_cad_produto.horizontalHeaderItem(1)
-        ___qtablewidgetitem22.setText(QCoreApplication.translate("MainWindow", u"DESCRICAO", None));
-        ___qtablewidgetitem23 = self.tb_cad_produto.horizontalHeaderItem(2)
-        ___qtablewidgetitem23.setText(QCoreApplication.translate("MainWindow", u"VALOR R$", None));
+        ___qtablewidgetitem29 = self.tb_cad_produto.horizontalHeaderItem(0)
+        ___qtablewidgetitem29.setText(QCoreApplication.translate("MainWindow", u"CODIGO", None));
+        ___qtablewidgetitem30 = self.tb_cad_produto.horizontalHeaderItem(1)
+        ___qtablewidgetitem30.setText(QCoreApplication.translate("MainWindow", u"DESCRICAO", None));
+        ___qtablewidgetitem31 = self.tb_cad_produto.horizontalHeaderItem(2)
+        ___qtablewidgetitem31.setText(QCoreApplication.translate("MainWindow", u"VALOR R$", None));
         self.btn_alterar_prod.setText(QCoreApplication.translate("MainWindow", u"Alterar", None))
         self.btn_excluir_prod.setText(QCoreApplication.translate("MainWindow", u"Excluir", None))
         self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tela_produtos), QCoreApplication.translate("MainWindow", u"Produtos", None))

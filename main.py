@@ -8,6 +8,8 @@ import PySide6.QtWidgets
 from ui_main import Ui_MainWindow
 from qt_material import apply_stylesheet
 from database import Data_base
+import pandas as pd
+import sqlite3
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -22,6 +24,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.busca_produto()
         self.busca_cliente()
         self.busca_pedido()
+        self.busca_historico()
 
         #############################################
         #BOTÃO MENU
@@ -56,8 +59,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_alterar_prod.clicked.connect(self.alterar_produto)
         #ALTERAR CLIENTE
         self.btn_alterar_cli.clicked.connect(self.alterar_cliente)
-        #ALTERAR PEDIDO
-        self.btn_alterar_pedido.clicked.connect(self.alterar_pedido)
 
         #EXCLUIR PRODUTO
         self.btn_excluir_prod.clicked.connect(self.excluir_produto)
@@ -66,12 +67,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #EXCLUIR PEDIDO
         self.btn_excluir_pedido.clicked.connect(self.excluir_pedido)
 
+        #FATURAR PEDIDOS
+        self.btn_faturar_pedido.clicked.connect(self.faturar_pedido)
+
+        #EXTRAIR EXCEL
+        self.btn_historico_export.clicked.connect(self.excel_export)
 
     def leftMenu(self):
         width = self.left_frame.width()
 
         if width == 0:
-            newWidth = 230
+            newWidth = 250
         else:
             newWidth = 0
         
@@ -81,6 +87,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.animation.setEndValue(newWidth)
         self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
         self.animation.start()
+
+#FUNÇÕES DE CADASTRO
 
     def cadastro_produto(self):
         fullDataSet = (
@@ -151,6 +159,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.msg(resposta[0],resposta[1])
         self.busca_pedido()
 
+#FUNÇÃO DE FATURAR
+
+    def faturar_pedido(self):
+        msgBox = QMessageBox()
+        msgBox.setWindowTitle("Faturar")
+        msgBox.setText("Este pedido será faturado!")
+        msgBox.setInformativeText("Tem certeza que deseja continuar?")
+        msgBox.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        resp = msgBox.exec()
+        if resp == QMessageBox.Yes:
+            
+            pedidofechado = self.tb_cad_pedido.selectionModel().currentIndex().siblingAtColumn(0).data()
+            result = self.db.pedido_historico(pedidofechado)
+            self.db.delete_pedidos(pedidofechado)
+            self.msg(result[0],result[1])
+            
+            print("f")
+            self.busca_pedido()
+
+#FUNÇÕES DE BUSCA
+
     def busca_cpf(self):
         cpf_pd = self.txt_cpf_pedido.text()
         self.db.select_cliente_pedido(cpf_pd)
@@ -163,11 +192,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         campoCod = self.db.select_produto_pedido(cod_pd)
         self.txt_desc.setText(campoCod[0][1])
         self.txt_valorunitario.setText(campoCod[0][2])
-        
+
+#FUNÇÃO DE CALCULO DO TOTAL
+
     def calcular_total(self):
         qtde_item = float(self.txt_qtde.text())
         calc_total = float(self.txt_valorunitario.text())
         self.txt_valortotal.setText(str(float(calc_total) * float(qtde_item)))
+
+#FUNÇÃO DE MENSAGENS
 
     def msg(self, tipo, mensage):
         msg = QMessageBox()
@@ -184,7 +217,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         msg.setText(mensage)
         msg.exec()
 
-#FUNÇÕES DO CADASTRO DE PRODUTO
+#FUNÇÕES DA TELA DE PRODUTO
 
     def busca_produto(self):
         result = self.db.select_all_produtos()
@@ -226,7 +259,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             self.msg(result[0],result[1])
 
-#FUNÇÕES DO CADASTRO DE CLIENTE
+#FUNÇÕES DA TELA DE CLIENTE
 
     def busca_cliente(self):
         result = self.db.select_all_clientes()
@@ -268,7 +301,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             self.msg(result[0],result[1])
 
-#FUNÇÕES DO CADASTRO DE PEDIDO
+#FUNÇÕES DA TELA DE PEDIDO
 
     def busca_pedido(self):
         result = self.db.select_all_pedidos()
@@ -310,6 +343,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             self.msg(result[0],result[1])
 
+#FUNÇÃO EXPORTAR HISTORICO
+
+    def excel_export(self):
+        cnx = sqlite3.connect('system.db')
+
+        historico = pd.read_sql_query("""SELECT * FROM Historico""", con=cnx)
+        historico.to_excel("Historico.xlsx", sheet_name='Historico', index=False)
+
+        self.msg('ok', "Histórico extraído com sucesso!")
+
+#FUNÇÃO DA TELA DE HISTORICO
+
+    def busca_historico(self):
+        result = self.db.select_all_historico()
+        self.tab_historico.clearContents()
+        self.tab_historico.setRowCount(len(result))
+
+        for row, text in enumerate(result):
+            for column, data in enumerate(text):
+                self.tab_historico.setItem(row, column, QTableWidgetItem(str(data)))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
@@ -318,6 +371,7 @@ if __name__ == '__main__':
     db.create_table_produto()
     db.create_table_cliente()
     db.create_table_pedido()
+    db.create_table_hist()
     window = MainWindow()
     window.show()
     app.exec()
