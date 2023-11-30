@@ -174,9 +174,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             result = self.db.pedido_historico(pedidofechado)
             self.db.delete_pedidos(pedidofechado)
             self.msg(result[0],result[1])
-            
-            print("f")
             self.busca_pedido()
+            self.busca_historico()
 
 #FUNÇÕES DE BUSCA
 
